@@ -13,23 +13,30 @@ export const playTrick = {
          // on the very first trick of the game, a defensive player goes first
          // after that, whoever won the previous trick leads the current one
          first: (G, ctx) => {
-            if (G.trickState.leadingPlayer === undefined) {
-               // play order as defined below won't be set yet, but we know what it _will_ be, so just use this
-               const tempPlayOrder = [
-                  G.offensiveTeam[0],
-                  G.defensiveTeam[0],
-                  G.offensiveTeam[1],
-                  G.defensiveTeam[1],
-                  G.defensiveTeam[2],
-               ];
+            // play order as defined below won't be set yet, but we know what it _will_ be, so just use this
+            const tempPlayOrder = [
+               G.offensiveTeam[0],
+               G.defensiveTeam[0],
+               G.offensiveTeam[1],
+               G.defensiveTeam[1],
+               G.defensiveTeam[2],
+            ];
+            if (G.trickState.leadingPlayer === undefined) {          
                for (let i = 0; i < 5; i++) {
                   if (G.defensiveTeam.includes(tempPlayOrder[i])) {
                      return i;
                   }
                }
+               console.log("could not find starting player")
                return 0;
             } else {
-               return G.trickState.leadingPlayer;
+               for (let i = 0; i < 5; i++) {
+                  if (tempPlayOrder[i] === ("" + G.trickState.leadingPlayer)) {
+                     return i
+                  }
+               }
+               console.log("could not find leading player")
+               return 0;
             }
          },
          next: (G, ctx) => (ctx.playOrderPos + 1) % ctx.numPlayers,

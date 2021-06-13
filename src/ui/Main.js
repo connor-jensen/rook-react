@@ -28,7 +28,7 @@ class RookUI extends React.Component {
       }
       return (
          <div>
-            <PlayerPointsDisplay playerPoints={this.props.G.playerPoints} />
+            <PlayerPointsDisplay playerPoints={this.props.G.playerPoints} playerID={this.props.playerID}/>
             <div style={{ display: "flex" }}>
                <div className="info">
                   <h2>Info (non-interactive):</h2>

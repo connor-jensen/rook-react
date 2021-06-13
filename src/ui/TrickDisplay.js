@@ -4,17 +4,29 @@ import Card from "./Card";
 const TrickDisplay = ({
    trickState,
    turnOrder,
+   offensiveTeam,
+   defensiveTeam,
+   playerID
 }) => {
+
+   const selfTeam = offensiveTeam.includes(playerID) ? "offense" : "defense"
+
+   console.log(`self: ${selfTeam}`)
    return (
       <div>
          {turnOrder.map((playerNumber) => {
+
+            const playerTeam = offensiveTeam.includes(playerNumber) ? "offense" : "defense"
+            const highlight = playerTeam === selfTeam ? {color: "blue"} : {color: "black"}
+
+
             let card =  getCardByOwner(trickState.cards, Number(playerNumber));
             if (card === null) {
-               return <div>player {playerNumber}:</div>;
+               return <div style={highlight}>player {playerNumber}:</div>;
             } else
                return (
                   <div style={{display: "flex"}}>
-                     <div>player {playerNumber}</div>
+                     <div style={highlight}>player {playerNumber}</div>
                      <Card card={card}/>
                   </div>
                );

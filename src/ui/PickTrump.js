@@ -5,34 +5,34 @@ const PickTrump = ({moves}) => {
       <div>
          <div>pick trump suit:</div>
          <ul>
-            <li className="blue" style={{width: "55px", paddingLeft: "5px"}}
+            <div className="blue" style={{width: "55px", padding: "4px"}}
                onClick={() => {
                   moves.pickTrumpSuit("blue");
                }}
             >
                Blue
-            </li>
-            <li className="green" style={{width: "55px", paddingLeft: "5px"}}
+            </div>
+            <div className="green" style={{width: "55px", padding: "4px"}}
                onClick={() => {
                   moves.pickTrumpSuit("green");
                }}
             >
                Green
-            </li>
-            <li className="red" style={{width: "55px", paddingLeft: "5px"}}
+            </div>
+            <div className="red" style={{width: "55px", padding: "4px"}}
                onClick={() => {
                   moves.pickTrumpSuit("red");
                }}
             >
                Red
-            </li>
-            <li className="yellow" style={{width: "55px", paddingLeft: "5px"}}
+            </div>
+            <div className="yellow" style={{width: "55px", padding: "4px"}}
                onClick={() => {
                   moves.pickTrumpSuit("yellow");
                }}
             >
                Yellow
-            </li>
+            </div>
          </ul>
       </div>
    );

@@ -45,6 +45,7 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
                   offensiveTeam={G.offensiveTeam}
                   defensiveTeam={G.defensiveTeam}
                   turnOrder={ctx.playOrder}
+                  playerID={playerID}
                />
             </div>
          );
@@ -70,6 +71,7 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
                   offensiveTeam={G.offensiveTeam}
                   defensiveTeam={G.defensiveTeam}
                   turnOrder={ctx.playOrder}
+                  playerID={playerID}
                />
 
                <h3>waiting for:</h3>

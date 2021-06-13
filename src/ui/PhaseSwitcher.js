@@ -4,7 +4,6 @@ import PlayTrick from "./PlayTrick";
 import PostBiddingUI from "./PostBidding";
 import SubmitReady from "./SubmitReady";
 import Hand from "./Hand";
-import { div } from "prelude-ls";
 
 /**
  *
