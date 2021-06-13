@@ -1,7 +1,11 @@
-import { Server } from "boardgame.io/server";
-import path from "path";
-import serve from "koa-static";
-import { RookGame } from "./gameLogic/game";
+import * as path from 'path';
+const serve = require('koa-static');
+const { Server } = require('boardgame.io/server');
+const { RookGame } = require('./gameLogic/game')
+
+// const server = Server({ games: [RookGame]})
+
+// server.run(8000)
 
 const server = Server({ games: [RookGame] });
 const PORT = process.env.PORT == null ? 8000 : parseInt(process.env.PORT);
