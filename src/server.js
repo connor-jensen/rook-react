@@ -4,9 +4,9 @@ import serve from "koa-static";
 import { RookGame } from "./gameLogic/game";
 
 const server = Server({ games: [RookGame] });
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT == null ? 8000 : parseInt(process.env.PORT);
 
-const frontEndAppBuildBath = path.resolve(__dirname, './build');
+const frontEndAppBuildBath = path.resolve(__dirname, '../build');
 server.app.use(serve(frontEndAppBuildBath))
 
 server.run(PORT, () => {
