@@ -11,14 +11,14 @@ import RookUI from "./ui/Main";
 //    board: RookUI,
 // });
 
-const { protocol, hostname, port } = window.location;
-const server = `${protocol}//${hostname}:${port}`;
+// const { protocol, hostname, port } = window.location;
+// const server = `${protocol}//${hostname}:${port}`;
 
 const RookClient = Client({
    game: RookGame,
    board: RookUI,
    numPlayers: 5,
-   multiplayer: SocketIO({server}),
+   multiplayer: SocketIO({server: `https://${window.location.hostname}`}),
    debug: true
 });
 
