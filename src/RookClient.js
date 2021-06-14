@@ -26,9 +26,7 @@ const RookClient = ({ debug }) => {
          game: RookGame,
          board: RookUI,
          numPlayers: 5,
-         // multiplayer: SocketIO({server: `https://${window.location.hostname}`}),
-         multiplayer: SocketIO({server: `192.168.0.114:8000`}),
-
+         multiplayer: SocketIO({server: `https://${window.location.hostname}`}),
          // multiplayer: SocketIO({ server: `localhost:8000` }),
       });
       return <MultiplayerRookClient matchID={matchID} playerID={playerID} />;
