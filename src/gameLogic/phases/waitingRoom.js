@@ -21,7 +21,7 @@ export const waitingRoom = {
             moves: {
                confirmReady: (G, ctx, name) => {
                   if (name === "enter your name"){
-                     name = `player ${ctx.playerID}`
+                     name = `player ${ctx.playerID + 1}`
                   } else {
                      G.playerNames[ctx.playerID] = name
                   }
