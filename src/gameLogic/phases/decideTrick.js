@@ -12,6 +12,10 @@ export const decideTrick = {
          G.defensiveTeamPoints += G.trickState.pointTotal;
          G.defensiveTeamNumTricks++;
       }
+      console.log("ending phase in 5 seconds...")
+      setTimeout(() => {
+         ctx.events.endPhase();
+      }, 5000)
    },
    endIf: (G) => {
       console.log("in decideTrick endIf");
@@ -80,3 +84,9 @@ export const decideTrick = {
    },
    next: "playTrick",
 };
+
+function setAllPlayersReady(G, ctx) {
+   for (let i = 0; i < 5; i++) {
+      G.playersReady[i] = true;
+   }
+}
