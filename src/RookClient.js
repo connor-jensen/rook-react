@@ -2,6 +2,7 @@ import { SocketIO } from "boardgame.io/multiplayer";
 import { Client } from "boardgame.io/react";
 import { useParams } from "react-router-dom";
 import { RookGame } from "./gameLogic/game";
+import { Debug } from 'boardgame.io/debug'
 import RookUI from "./ui/Main";
 
 const RookClient = ({ debug }) => {
@@ -13,7 +14,7 @@ const RookClient = ({ debug }) => {
          game: RookGame,
          board: RookUI,
          numPlayers: 5,
-         debug: true,
+         debug: { impl: Debug},
       });
       return <DebugRookClient matchID={"test"} playerID={"0"} />;
    }
@@ -25,8 +26,8 @@ const RookClient = ({ debug }) => {
          game: RookGame,
          board: RookUI,
          numPlayers: 5,
-         // multiplayer: SocketIO({server: `https://${window.location.hostname}`}),
-         multiplayer: SocketIO({ server: `localhost:8000` }),
+         multiplayer: SocketIO({server: `https://${window.location.hostname}`}),
+         // multiplayer: SocketIO({ server: `localhost:8000` }),
       });
       return <MultiplayerRookClient matchID={matchID} playerID={playerID} />;
    } 
