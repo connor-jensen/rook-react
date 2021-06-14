@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SubmitReady = ({moves}) => {
-   return (<button onClick={() => moves.confirmReady()}>Ready</button>);
+const SubmitReady = ({moves, playerName}) => {
+   return (<button onClick={() => moves.confirmReady(playerName)}>Ready</button>);
 }
  
 export default SubmitReady;

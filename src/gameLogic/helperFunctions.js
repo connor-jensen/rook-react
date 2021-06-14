@@ -1,15 +1,20 @@
 import { sortedDeck } from "./gameObjects/deck";
 
 export function createGameState(G, ctx, continueCurrentGame) {
-   
-   let playerPoints = [0,0,0,0,0]
+   let playerPoints = [0, 0, 0, 0, 0];
    if (continueCurrentGame) {
       playerPoints = G.playerPoints;
    }
 
-
+   let playerNames = [
+      "player 0",
+      "player 1",
+      "player 2",
+      "player 3",
+      "player 4",
+   ];
    let shouldContinue = false;
-   let calledCard = undefined
+   let calledCard = undefined;
    let playersBidding = [true, true, true, true, true];
    let playersReady = [false, false, false, false, false];
    let offensiveTeam = [];
@@ -36,10 +41,11 @@ export function createGameState(G, ctx, continueCurrentGame) {
       hands[i % 5].push(card);
    }
    for (let i = 0; i < 5; i++) {
-      sortHand(hands[i])
+      sortHand(hands[i]);
    }
    let widow = deck.slice();
    return {
+      playerNames,
       shouldContinue,
       offenseTeamWon,
       calledCard,
@@ -58,24 +64,23 @@ export function createGameState(G, ctx, continueCurrentGame) {
       defensiveTeamPoints,
       offensiveTeamNumTricks,
       defensiveTeamNumTricks,
-   }
+   };
 }
 
 export function sortHand(cards) {
    cards.sort((a, b) => {
       if (a.suit === "rook") {
-         return -1
+         return -1;
       } else if (b.suit === "rook") {
-         return 1
-      }
-       else if (a.suit < b.suit) {
-         return -1
-      } else  if (a.suit > b.suit) {
-         return 1
+         return 1;
+      } else if (a.suit < b.suit) {
+         return -1;
+      } else if (a.suit > b.suit) {
+         return 1;
       } else {
-         return b.priority - a.priority
+         return b.priority - a.priority;
       }
-   })
+   });
 }
 
 export const waitConfirmation = {
@@ -84,4 +89,4 @@ export const waitConfirmation = {
          G.playersReady[ctx.playerID] = true;
       },
    },
-}
+};

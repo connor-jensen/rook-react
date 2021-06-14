@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./Card";
 
 const TrickDisplay = ({
+   names,
    trickState,
    turnOrder,
    offensiveTeam,
@@ -22,11 +23,11 @@ const TrickDisplay = ({
 
             let card =  getCardByOwner(trickState.cards, Number(playerNumber));
             if (card === null) {
-               return <div style={highlight}>player {playerNumber}:</div>;
+               return <div style={highlight}>{names[Number(playerNumber)]}:</div>;
             } else
                return (
                   <div style={{display: "flex"}}>
-                     <div style={highlight}>player {playerNumber}</div>
+                     <div style={highlight}>{names[Number(playerNumber)]}</div>
                      <Card card={card}/>
                   </div>
                );

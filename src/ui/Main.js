@@ -2,7 +2,7 @@ import React from "react";
 import PhaseSwitcher from "./PhaseSwitcher";
 import InfoDisplay from "./InfoDisplay";
 import PlayerPointsDisplay from "./PlayerPoints";
-import SubmitReady from "./SubmitReady";
+import WaitingRoom from "./WaitingRoom";
 
 class RookUI extends React.Component {
    render() {
@@ -14,21 +14,20 @@ class RookUI extends React.Component {
 
       if (phase === "waitingRoom") {
          return (
-            <div>
-               <div>waiting for all players to join</div>
-               <h3>waiting for:</h3>
-               <ul>
-                  {this.props.G.playersReady.map((isReady, index) => {
-                     return isReady ? null : <div>player {index}</div>;
-                  })}
-               </ul>
-               <SubmitReady moves={this.props.moves}/>
-            </div>
-         )
+            <WaitingRoom
+               G={this.props.G}
+               playerID={this.props.playerID}
+               moves={this.props.moves}
+            />
+         );
       }
       return (
          <div>
-            <PlayerPointsDisplay playerPoints={this.props.G.playerPoints} playerID={this.props.playerID}/>
+            <PlayerPointsDisplay
+               G={this.props.G}
+               playerPoints={this.props.G.playerPoints}
+               playerID={this.props.playerID}
+            />
             <div style={{ display: "flex" }}>
                <div className="info">
                   <h2>Info (non-interactive):</h2>
@@ -43,7 +42,9 @@ class RookUI extends React.Component {
                </div>
                <div className="actions" style={{ marginLeft: "50px" }}>
                   <h2>Actions (interactive):</h2>
-                  {this.props.playerID === this.props.ctx.currentPlayer ? <div>Your turn!</div> : null}
+                  {this.props.playerID === this.props.ctx.currentPlayer ? (
+                     <div>Your turn!</div>
+                  ) : null}
                   <PhaseSwitcher
                      playerID={this.props.playerID}
                      phase={phase}

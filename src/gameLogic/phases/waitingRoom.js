@@ -1,5 +1,4 @@
 import { ActivePlayers } from 'boardgame.io/core'
-import { waitConfirmation } from '../helperFunctions';
 
 export const waitingRoom = {
    start: true,
@@ -18,7 +17,18 @@ export const waitingRoom = {
    },
    turn: {
       stages: {
-         waitConfirmation
+         waitConfirmation: {
+            moves: {
+               confirmReady: (G, ctx, name) => {
+                  if (name === "enter your name"){
+                     name = `player ${ctx.playerID}`
+                  } else {
+                     G.playerNames[ctx.playerID] = name
+                  }
+                  G.playersReady[ctx.playerID] = true;
+               },
+            },
+         },
       },
    },
    next: "bidding",
