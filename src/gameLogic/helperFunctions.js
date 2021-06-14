@@ -8,6 +8,7 @@ export function createGameState(G, ctx, continueCurrentGame) {
    }
 
 
+   let shouldContinue = false;
    let calledCard = undefined
    let playersBidding = [true, true, true, true, true];
    let playersReady = [false, false, false, false, false];
@@ -39,6 +40,7 @@ export function createGameState(G, ctx, continueCurrentGame) {
    }
    let widow = deck.slice();
    return {
+      shouldContinue,
       offenseTeamWon,
       calledCard,
       playerPoints,
