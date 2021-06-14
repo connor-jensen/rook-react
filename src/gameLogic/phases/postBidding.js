@@ -1,3 +1,6 @@
+import { INVALID_MOVE } from 'boardgame.io/core'
+import { sortHand } from '../helperFunctions';
+
 export const postBidding = {
    onBegin: (G, ctx) => {
       console.log("starting handleWidow");
@@ -37,9 +40,14 @@ export const postBidding = {
 
 // discards a card by index, and once player is down to normal 11 cards,
 // move to the next stage
-function discardWidowCard(G, ctx, first) {
+function discardWidowCard(G, ctx, cardIndex) {
+   if (G.hands[G.winningBidPlayer][cardIndex].points > 0) {
+      console.log("can't discard a card worth points");
+      return INVALID_MOVE
+   }
+
    console.log("discarding widow card");
-   G.widow.push(G.hands[G.winningBidPlayer].splice(first, 1)[0]);
+   G.widow.push(G.hands[G.winningBidPlayer].splice(cardIndex, 1)[0]);
 
    if (G.hands[ctx.currentPlayer].length === 11) {
       ctx.events.setActivePlayers({ currentPlayer: "pickTrump" });
@@ -77,6 +85,14 @@ function pickAllyByCard(G, ctx, suit, number) {
       (G.widow[1].suit === suit && G.widow[1].number === number)
    ) {
       console.log("that card is in the widow, you can't pick it");
+      return INVALID_MOVE
+   } else {
+      for (const card of G.hands[ctx.currentPlayer]) {
+         if (card.suit === suit && card.number === number) {
+            console.log("can't call a card that you own")
+            return INVALID_MOVE
+         }
+      }
    }
 
    for (let i = 0; i < 5; i++) {
@@ -88,9 +104,10 @@ function pickAllyByCard(G, ctx, suit, number) {
 
       // player who has card goes on offensive team
       // others go on defensive team
-      if (playerHasCard(G, ctx, i, suit, number)) {
+      let card = playerHasCard(G, ctx, i, suit, number)
+      if (card) {
          console.log(`player ${i} has the ${number} of ${suit}. Goes on offense`)
-
+         G.calledCard = card;
          G.offensiveTeam.push("" + i);
       } else {
          console.log(`player ${i} goes on defense`)
@@ -105,26 +122,8 @@ function playerHasCard(G, ctx, playerIndex, suit, number) {
    for (const card of G.hands[playerIndex]) {
       // if found, put them on offensive team
       if (card.suit === suit && card.number === number) {
-         G.calledCard = card;
-         return true;
+         return card;
       }
    }
    return false;
-}
-
-function sortHand(cards) {
-   cards.sort((a, b) => {
-      if (a.suit === "rook") {
-         return -1
-      } else if (b.suit === "rook") {
-         return 1
-      }
-       else if (a.suit < b.suit) {
-         return -1
-      } else  if (a.suit > b.suit) {
-         return 1
-      } else {
-         return b.priority - a.priority
-      }
-   })
 }

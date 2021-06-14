@@ -1,11 +1,10 @@
+import { INVALID_MOVE } from "boardgame.io/core";
+
 export const playTrick = {
    onBegin: (G, ctx) => {
       console.log("starting playTrick");
    },
    endIf: (G) => {
-      console.log("in playTrick endIf");
-      const x = { ...G.trickState };
-      console.log(x);
       return G.trickState.cards.length === 5;
    },
    turn: {
@@ -56,7 +55,26 @@ export const playTrick = {
 };
 
 function playCard(G, ctx, index) {
-   let card = G.hands[ctx.currentPlayer].splice(index, 1)[0];
+   let card = G.hands[ctx.currentPlayer][index]
+
+
+   // check for valid move
+   if (G.trickState.cards.length > 0) {
+
+      if (G.trickState.suit !== card.suit) {
+
+
+         for (const playerCard of G.hands[ctx.currentPlayer]) {
+            console.log(`card's suit: ${playerCard.suit} required suit: ${G.trickState.suit}`)
+            if (playerCard.suit === G.trickState.suit) {
+               console.log(`you must play a ${G.trickState.suit} card if you have any`)
+               return INVALID_MOVE
+            }
+         }
+      }
+   }
+
+   card = G.hands[ctx.currentPlayer].splice(index, 1)[0];
    G.trickState.cards.push(card);
    G.trickState.pointTotal += card.points;
    if (G.trickState.cards.length === 1) {

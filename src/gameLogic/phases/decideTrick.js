@@ -1,3 +1,5 @@
+import { waitConfirmation } from '../helperFunctions';
+
 export const decideTrick = {
    onBegin: (G, ctx) => {
       // assign points to winner of trick and set them as the starting
@@ -12,10 +14,8 @@ export const decideTrick = {
          G.defensiveTeamPoints += G.trickState.pointTotal;
          G.defensiveTeamNumTricks++;
       }
-      console.log("ending phase in 5 seconds...")
-      setTimeout(() => {
-         ctx.events.endPhase();
-      }, 5000)
+
+      ctx.events.setActivePlayers({all: 'waitConfirmation', moveLimit: 1})
    },
    endIf: (G) => {
       console.log("in decideTrick endIf");
@@ -75,13 +75,16 @@ export const decideTrick = {
             G.defensiveTeam[2],
          ],
       },
+      stages: {
+         waitConfirmation
+      }
    },
-   moves: {
-      confirmReady: (G, ctx) => {
-         G.playersReady[ctx.currentPlayer] = true;
-         ctx.events.endTurn();
-      },
-   },
+   // moves: {
+   //    confirmReady: (G, ctx) => {
+   //       G.playersReady[ctx.currentPlayer] = true;
+   //       ctx.events.endTurn();
+   //    },
+   // },
    next: "playTrick",
 };
 

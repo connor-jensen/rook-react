@@ -77,3 +77,11 @@ export function sortHand(cards) {
       }
    })
 }
+
+export const waitConfirmation = {
+   moves: {
+      confirmReady: (G, ctx) => {
+         G.playersReady[ctx.playerID] = true;
+      },
+   },
+}

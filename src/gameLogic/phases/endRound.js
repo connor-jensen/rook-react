@@ -1,8 +1,8 @@
-import { createGameState } from "../helperFunctions";
+import { createGameState, waitConfirmation } from "../helperFunctions";
 
 export const endRound = {
    onBegin: (G, ctx) => {
-      const [offensePointsEarned, defensePointsEarned] = calculatePoints(G)
+      const [offensePointsEarned, defensePointsEarned] = calculatePoints(G);
       for (let i = 0; i < 5; i++) {
          if (G.offensiveTeam.includes("" + i)) {
             G.playerPoints[i] += offensePointsEarned;
@@ -10,44 +10,44 @@ export const endRound = {
             G.playerPoints[i] += defensePointsEarned;
          }
       }
+      ctx.events.setActivePlayers({ all: "waitConfirmation", moveLimit: 1 });
    },
    endIf: (G) => {
       console.log("in decideTrick endIf");
       // end once all 5 players are ready
       let numPlayersReady = G.playersReady.filter((isReady) => isReady).length;
       console.log(`numPlayersReady: ${numPlayersReady}`);
-      return (numPlayersReady === 5)
+      return numPlayersReady === 5;
    },
    onEnd: (G, ctx) => {
-      return createGameState(G, ctx, true)
+      return createGameState(G, ctx, true);
    },
-   moves: {
-      confirmReady: (G, ctx) => {
-         G.playersReady[ctx.currentPlayer] = true;
-         ctx.events.endTurn();
+   turn: {
+      stages: {
+         waitConfirmation,
       },
    },
-   next: 'bidding',
-}
+   next: "bidding",
+};
 
-function calculatePoints(G){
-   let offensePointsEarned = 0
+function calculatePoints(G) {
+   let offensePointsEarned = 0;
    let defensePointsEarned = 0;
    if (G.offensiveTeamNumTricks >= G.defensiveTeamNumTricks) {
-      offensePointsEarned += 20
+      offensePointsEarned += 20;
    } else {
-      defensePointsEarned += 20
+      defensePointsEarned += 20;
    }
 
    offensePointsEarned += G.offensiveTeamPoints;
    defensePointsEarned += G.defensiveTeamPoints;
 
    if (offensePointsEarned < G.winningBid) {
-      offensePointsEarned -= G.winningBid
+      offensePointsEarned -= G.winningBid;
       G.offenseTeamWon = false;
    } else {
       G.offenseTeamWon = true;
    }
 
-   return [offensePointsEarned, defensePointsEarned]
+   return [offensePointsEarned, defensePointsEarned];
 }
