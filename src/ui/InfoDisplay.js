@@ -38,7 +38,7 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
                   <div>called card: </div>
                   <Card card={G.calledCard} />
                </div>
-               <div>Trump suit: {G.trumpSuit}</div>
+               <div >Trump suit:<span className={G.trumpSuit} style={{padding:"4px"}}>{G.trumpSuit}</span></div>
                <h4>Current trick:</h4>
                <TrickDisplay
                   trickState={G.trickState}
