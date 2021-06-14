@@ -72,11 +72,21 @@ const App = () => {
                      players 0 through 4:
                   </div>
                   <ul>
-                     <div><a href={window.location.host + `/0/0`}>Player 0</a></div>
-                     <div><a href={window.location.host + `/0/1`}>Player 1</a></div>
-                     <div><a href={window.location.host + `/0/2`}>Player 2</a></div>
-                     <div><a href={window.location.host + `/0/3`}>Player 3</a></div>
-                     <div><a href={window.location.host + `/0/4`}>Player 4</a></div>
+                     <div>
+                        <a href={`/0/0`}>Player 0</a>
+                     </div>
+                     <div>
+                        <a href={`/0/1`}>Player 1</a>
+                     </div>
+                     <div>
+                        <a href={`/0/2`}>Player 2</a>
+                     </div>
+                     <div>
+                        <a href={`/0/3`}>Player 3</a>
+                     </div>
+                     <div>
+                        <a href={`/0/4`}>Player 4</a>
+                     </div>
                   </ul>
                </Route>
                <Route path="/test">
