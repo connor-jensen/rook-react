@@ -16,7 +16,6 @@ const TrickDisplay = ({
    return (
       <div>
          {turnOrder.map((playerNumber) => {
-
             const playerTeam = offensiveTeam.includes(playerNumber) ? "offense" : "defense"
             const highlight = playerTeam === selfTeam ? {color: "blue"} : {color: "black"}
 

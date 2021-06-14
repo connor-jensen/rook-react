@@ -41,6 +41,7 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
                <div >Trump suit:<span className={G.trumpSuit} style={{padding:"4px"}}>{G.trumpSuit}</span></div>
                <h4>Current trick:</h4>
                <TrickDisplay
+                  names={G.playerNames}
                   trickState={G.trickState}
                   offensiveTeam={G.offensiveTeam}
                   defensiveTeam={G.defensiveTeam}

@@ -4,7 +4,7 @@
 // import { RookGame } from "./gameLogic/game";
 // import RookUI from "./ui/Main";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import RookClient from './RookClient'
+import RookClient from "./RookClient";
 
 // for local server + client combo
 // const App = Client({
@@ -62,6 +62,23 @@ const App = () => {
       <div>
          <Router>
             <Switch>
+               <Route path="/" exact>
+                  <div>
+                     to join a game add {`/gameID/playerID`} to the end of the
+                     address
+                  </div>
+                  <div>
+                     for example, these links are to a game with id 0, and
+                     players 0 through 4:
+                  </div>
+                  <ul>
+                     <div><a href={window.location.host + `/0/0`}>Player 0</a></div>
+                     <div><a href={window.location.host + `/0/1`}>Player 1</a></div>
+                     <div><a href={window.location.host + `/0/2`}>Player 2</a></div>
+                     <div><a href={window.location.host + `/0/3`}>Player 3</a></div>
+                     <div><a href={window.location.host + `/0/4`}>Player 4</a></div>
+                  </ul>
+               </Route>
                <Route path="/test">
                   <RookClient debug={"test"} />
                </Route>
