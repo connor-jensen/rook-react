@@ -10,7 +10,7 @@ import Hand from "./Hand";
  * @param {String} param0
  */
 const PhaseSwitcher = ({ phase, stage, G, ctx, moves, playerID }) => {
-   if (playerID === ctx.currentPlayer) {
+   if (playerID === ctx.currentPlayer || phase === "decideTrick" || phase === "endRound")  {
       switch (phase) {
          // see ./gameLogic/game.js for phases. these strings are used as keys to match the phases defined there
          case "bidding":
