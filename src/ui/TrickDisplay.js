@@ -17,7 +17,7 @@ const TrickDisplay = ({
       <div>
          {turnOrder.map((playerNumber) => {
             const playerTeam = offensiveTeam.includes(playerNumber) ? "offense" : "defense"
-            const highlight = playerTeam === selfTeam ? {color: "blue"} : {color: "black"}
+            const highlight = playerTeam === selfTeam ? {color: "hsl(245deg, 100%, 60%)"} : {color: "hsl(210deg, 10%, 90%)"}
 
 
             let card =  getCardByOwner(trickState.cards, Number(playerNumber));

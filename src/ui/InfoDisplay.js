@@ -1,6 +1,7 @@
 import Hand from "./Hand";
 import Card from "./Card";
 import TrickDisplay from "./TrickDisplay";
+import Center from "./Center";
 
 const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
    switch (phase) {
@@ -24,9 +25,15 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
                {/* <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div> */}
                <div>
                   Team 1:{" " + G.offensiveTeamPoints} points. Players:
+                  <Center>
+                     <div>
+                        
+                     </div>
                   {G.offensiveTeam.map((number) => {
                      return ` ${G.playerNames[Number(number)]}, `;
                   })}
+                  </Center>
+                  
                </div>
                <div>
                   Team 2:{" " + G.defensiveTeamPoints} points. Players:

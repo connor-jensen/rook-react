@@ -6,8 +6,10 @@ const Wrapper = styled.div`
    display: flex;
    flex-direction: column;
    background-color: hsl(245deg, 100%, 60%);
-   padding: 5px;
+   padding: 4px;
    border-radius: 3px;
+   width: 65px;
+   font-size: 0.95rem;
 `;
 
 const ActiveWrapper = styled.div`
@@ -15,8 +17,10 @@ const ActiveWrapper = styled.div`
    flex-direction: column;
    color: hsl(245deg, 100%, 60%);
    background-color: hsl(210deg, 10%, 90%);
-   padding: 5px;
+   padding: 4px;
    border-radius: 3px;
+   width: 65px;
+   font-size: 0.95rem;
 `;
 
 const PlayerDisplayCard = ({ playerName, points, active }) => {
