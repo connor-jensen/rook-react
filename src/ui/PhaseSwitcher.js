@@ -49,7 +49,7 @@ const PhaseSwitcher = ({ phase, stage, G, ctx, moves, playerID }) => {
    } else {
       return (
          <div>
-            <div>Waiting for {G.playerNames[ctx.currentPlayer]}</div>
+            {/* <div>Waiting for {G.playerNames[ctx.currentPlayer]}</div> */}
             <Hand cards={G.hands[Number(playerID)]} />
          </div>
       );

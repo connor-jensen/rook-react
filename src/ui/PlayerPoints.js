@@ -1,15 +1,67 @@
 import React from "react";
+import styled from "styled-components";
+import Center from "./Center";
 
-const PlayerPointsDisplay = ({ playerPoints, playerID, G }) => {
+const Wrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   background-color: hsl(245deg, 100%, 60%);
+   padding: 5px;
+   border-radius: 3px;
+`;
+
+const ActiveWrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   color: hsl(245deg, 100%, 60%);
+   background-color: hsl(210deg, 10%, 90%);
+   padding: 5px;
+   border-radius: 3px;
+`;
+
+const PlayerDisplayCard = ({ playerName, points, active }) => {
+   if (active) {
+      return (
+         <ActiveWrapper>
+            <div>{playerName}</div>
+            <div>{points}</div>
+         </ActiveWrapper>
+      );
+   } else {
+      return (
+         <Wrapper>
+            <div>{playerName}</div>
+            <div>{points}</div>
+         </Wrapper>
+      );
+   }
+};
+
+const PlayerPointsDisplay = ({ playerPoints, playerID, G, ctx }) => {
    return (
-      <div style={{ display: "flex" }}>
+      <Center spaced>
          {playerPoints.map((points, index) => {
-            const style = Number(playerID) === index ? {paddingLeft:"30px", color: "blue"} : {paddingLeft:"30px"} 
-            return (
-                  <div  style={style}>{G.playerNames[index]}: {points}</div>
-            );
+            const style =
+               Number(playerID) === index
+                  ? { paddingLeft: "30px", color: "blue" }
+                  : { paddingLeft: "30px" };
+            if (Number(ctx.currentPlayer) === index) {
+               return (
+                  <PlayerDisplayCard
+                     playerName={G.playerNames[index]}
+                     points={points}
+                     active
+                  />
+               );
+            } else
+               return (
+                  <PlayerDisplayCard
+                     playerName={G.playerNames[index]}
+                     points={points}
+                  />
+               );
          })}
-      </div>
+      </Center>
    );
 };
 

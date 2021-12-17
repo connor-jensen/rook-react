@@ -1,15 +1,19 @@
 import React from "react";
 
-const Center = (props) => {
+const Center = ({children, horizontal, spaced}) => {
+   let direction = horizontal ? "column" : "row";
+   let spacing = spaced ? "space-around" : "center"
+
    return (
       <div
          style={{
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
+            justifyContent: spacing,
+            alignItems: "center",
+            flexDirection: direction
          }}
       >
-         {props.children}
+         {children}
       </div>
    );
 };

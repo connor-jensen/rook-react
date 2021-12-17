@@ -7,21 +7,21 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
       case "bidding":
          return (
             <div>
-               <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div>
+               {/* <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div> */}
                <div>Current bid: {G.winningBid}</div>
             </div>
          );
       case "postBidding":
          return (
             <div>
-               <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div>
+               {/* <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div> */}
                <div>Current bid: {G.winningBid}</div>
             </div>
          );
       case "playTrick":
          return (
             <div>
-               <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div>
+               {/* <div>It is {G.playerNames[ctx.currentPlayer]}'s turn</div> */}
                <div>
                   Team 1:{" " + G.offensiveTeamPoints} points. Players:
                   {G.offensiveTeam.map((number) => {
@@ -38,7 +38,7 @@ const InfoDisplay = ({ G, ctx, phase, stage, playerID }) => {
                   <div>called card: </div>
                   <Card card={G.calledCard} />
                </div>
-               <div >Trump suit:<span className={G.trumpSuit} style={{padding:"4px"}}>{G.trumpSuit}</span></div>
+               <div >Trump suit:<span className={G.trumpSuit + " card"} style={{padding:"4px"}}>{G.trumpSuit}</span></div>
                <h4>Current trick:</h4>
                <TrickDisplay
                   names={G.playerNames}

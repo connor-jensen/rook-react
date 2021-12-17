@@ -3,6 +3,8 @@ import PhaseSwitcher from "./PhaseSwitcher";
 import InfoDisplay from "./InfoDisplay";
 import PlayerPointsDisplay from "./PlayerPoints";
 import WaitingRoom from "./WaitingRoom";
+import PlayerCard from "./PlayerCard";
+import Center from "./Center";
 
 class RookUI extends React.Component {
    render() {
@@ -27,10 +29,11 @@ class RookUI extends React.Component {
                G={this.props.G}
                playerPoints={this.props.G.playerPoints}
                playerID={this.props.playerID}
+               ctx={this.props.ctx}
             />
-            <div style={{ display: "flex" }}>
+            <Center spaced>
                <div className="info">
-                  <h2>Info (non-interactive):</h2>
+                  {/* <h2>Info (non-interactive):</h2> */}
                   <InfoDisplay
                      playerID={this.props.playerID}
                      G={this.props.G}
@@ -40,8 +43,8 @@ class RookUI extends React.Component {
                      stage={stage}
                   />
                </div>
-               <div className="actions" style={{ marginLeft: "50px" }}>
-                  <h2>Actions (interactive):</h2>
+               <div className="actions">
+                  {/* <h2>Actions (interactive):</h2> */}
                   {this.props.playerID === this.props.ctx.currentPlayer ? (
                      <div>Your turn!</div>
                   ) : null}
@@ -54,7 +57,7 @@ class RookUI extends React.Component {
                      moves={this.props.moves}
                   />
                </div>
-            </div>
+            </Center>
          </div>
       );
    }
