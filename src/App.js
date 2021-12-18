@@ -37,7 +37,7 @@ const App = () => {
                         Join game
                         <select
                            onChange={(e) => {
-                              setGameNum(Number(e.target.value));
+                              setGameNum(Number(e.target.value - 1));
                            }}
                         >
                            <option>1</option>
@@ -47,7 +47,7 @@ const App = () => {
                         as player
                         <select
                            onChange={(e) => {
-                              setPlayerNum(Number(e.target.value));
+                              setPlayerNum(Number(e.target.value - 1));
                            }}
                         >
                            <option>1</option>
